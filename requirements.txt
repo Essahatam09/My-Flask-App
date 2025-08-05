@@ -1,4 +1,5 @@
 Flask==2.3.2
-Flask_SQLAlchemy==3.0.3
+Flask-SQLAlchemy==3.0.3
 SQLAlchemy==2.0.19
 Werkzeug==2.3.7
+gunicorn==21.2.0
