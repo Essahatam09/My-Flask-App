@@ -1,0 +1,123 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0f0f0f;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.login-container {
+    margin-top: 60px;
+    background: rgba(20, 20, 20, 0.85);
+    padding: 30px 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 360px; /* narrower container */
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #1e1e1e;
+    color: #fff;
+    outline: none;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+button.submit-btn {
+    width: 100%;
+    max-width: 200px; /* smaller button width */
+    padding: 12px 0;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: block;
+    margin: 0 auto; /* center the button */
+}
+
+button.submit-btn:hover {
+    background-color: #2563eb;
+}
+
+.link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.link a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+/* Flash messages */
+.flash {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.flash.success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-left: 4px solid #10b981;
+}
+
+.flash.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border-left: 4px solid #ef4444;
+}

@@ -1,0 +1,115 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0f0f0f;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.container {
+    margin-top: 60px;
+    background: rgba(20, 20, 20, 0.85);
+    padding: 30px 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #cccccc;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #1e1e1e;
+    color: #fff;
+    outline: none;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+.hint {
+    font-size: 0.75rem;
+    color: #bbbbbb;
+    margin-top: 5px;
+    display: block;
+}
+
+.password-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button.submit-btn:hover {
+    background-color: #2563eb;
+}
+
+.nav-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}

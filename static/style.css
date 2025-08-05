@@ -1,0 +1,89 @@
+/* Fantasy background image */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6); /* dark overlay */
+    z-index: -1;
+}
+/* Page container */
+.container {
+    max-width: 850px;
+    margin: 60px auto;
+    background: rgba(0, 0, 0, 0.7);  /* dark transparent overlay */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #6c63ff;
+}
+h2, h3 {
+    color: #aad8ff;
+    margin-top: 30px;
+}
+
+/* List styling */
+ul {
+    padding-left: 25px;
+    font-size: 1.1em;
+}
+li {
+    margin-bottom: 8px;
+}
+
+/* Paragraphs */
+p {
+    font-size: 1.15em;
+    line-height: 1.6;
+}
+
+/* Buttons */
+button {
+    background-color: #3f51b5;
+    color: white;
+    padding: 12px 22px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+button:hover {
+    background-color: #303f9f;
+}
+
+/* Links */
+a {
+    color: #aad8ff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.95em;
+    color: #ccc;
+}
