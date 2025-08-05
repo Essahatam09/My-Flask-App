@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Profile - MyAnimeList</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='edit_profile.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>Edit Profile</h1>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message {% if category == 'error' %}flash-error{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data" novalidate id="editProfileForm">
+      <div class="profile-pic-container" style="margin-bottom:40px; text-align:center;">
+        {% if user.profile_pic %}
+          <img src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" alt="Profile Picture" />
+        {% else %}
+          <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Profile Picture" />
+        {% endif %}
+        <label for="profile_pic" class="btn-upload-label" style="margin-top:15px;">Change Profile Picture</label>
+        <input type="file" id="profile_pic" name="profile_pic" accept="image/*" />
+      </div>
+
+      <!-- Name -->
+      <div class="field-row" data-field="name">
+        <label class="field-label" for="nameInput">Name</label>
+        <div class="field-value" id="nameDisplay">{{ user.name }}</div>
+        <div class="field-input">
+          <input type="text" name="name" id="nameInput" value="{{ user.name }}" required />
+        </div>
+        <button type="button" class="change-btn">Change</button>
+      </div>
+
+      <!-- Username -->
+      <div class="field-row" data-field="username">
+        <label class="field-label" for="usernameInput">Username</label>
+        <div class="field-value" id="usernameDisplay">{{ user.username }}</div>
+        <div class="field-input">
+          <input type="text" name="username" id="usernameInput" value="{{ user.username }}" required />
+        </div>
+        <button type="button" class="change-btn">Change</button>
+      </div>
+
+      <!-- Email -->
+      <div class="field-row" data-field="email">
+        <label class="field-label" for="emailInput">Email</label>
+        <div class="field-value" id="emailDisplay">{{ user.email }}</div>
+        <div class="field-input">
+          <input type="email" name="email" id="emailInput" value="{{ user.email }}" required />
+        </div>
+        <button type="button" class="change-btn">Change</button>
+      </div>
+
+      <!-- Password -->
+      <div class="field-row password-section">
+        <label class="field-label">Password</label>
+        <button type="button" class="change-btn" id="changePasswordBtn">Change Password</button>
+      </div>
+
+      <div class="password-fields" id="passwordFields">
+        <input type="password" name="current_password" id="currentPassword" placeholder="Current Password" autocomplete="current-password" required />
+        <input type="password" name="new_password" id="newPassword" placeholder="New Password" autocomplete="new-password" required />
+        <button type="button" class="cancel-btn" id="cancelPasswordBtn">Cancel</button>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="save-btn">Save Changes</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    document.querySelectorAll('.change-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const fieldRow = btn.closest('.field-row');
+        const fieldValue = fieldRow.querySelector('.field-value');
+        const fieldInput = fieldRow.querySelector('.field-input');
+        if(fieldInput.style.display === 'block'){
+          // Hide input, show value
+          fieldInput.style.display = 'none';
+          fieldValue.style.display = 'block';
+          btn.textContent = 'Change';
+          // Reset input value to original
+          const input = fieldInput.querySelector('input');
+          input.value = fieldValue.textContent.trim();
+        } else {
+          // Show input, hide value
+          fieldInput.style.display = 'block';
+          fieldValue.style.display = 'none';
+          btn.textContent = 'Cancel';
+          const input = fieldInput.querySelector('input');
+          input.focus();
+        }
+      });
+    });
+
+    // Password section toggle
+    const changePassBtn = document.getElementById('changePasswordBtn');
+    const passwordFields = document.getElementById('passwordFields');
+    const cancelPassBtn = document.getElementById('cancelPasswordBtn');
+
+    changePassBtn.addEventListener('click', () => {
+      passwordFields.style.display = 'flex';
+      changePassBtn.style.display = 'none';
+
+      // Clear password inputs on open
+      document.getElementById('currentPassword').value = '';
+      document.getElementById('newPassword').value = '';
+      document.getElementById('currentPassword').focus();
+    });
+
+    cancelPassBtn.addEventListener('click', () => {
+      passwordFields.style.display = 'none';
+      changePassBtn.style.display = 'inline-block';
+    });
+
+    // Prevent form submission if password fields visible but empty
+    document.getElementById('editProfileForm').addEventListener('submit', e => {
+      if(passwordFields.style.display === 'flex'){
+        const currentPwd = document.getElementById('currentPassword').value.trim();
+        const newPwd = document.getElementById('newPassword').value.trim();
+        if(!currentPwd || !newPwd){
+          alert('To change password, please fill both current and new password fields.');
+          e.preventDefault();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home - MyAnimeList</title>
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <header class="top-bar">
+        <h1>🏠 Home - MyAnimeList</h1>
+        <div class="nav-buttons">
+            <a href="{{ url_for('logout') }}" class="nav-btn">🚪 Logout</a>
+            <a href="{{ url_for('animelist') }}" class="nav-btn">🎥 My Anime List</a>
+            <a href="{{ url_for('edit_profile') }}" class="nav-btn">🛠️ Edit Profile</a>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <div class="profile-card">
+            <div class="avatar-container">
+                {% if user.profile_pic %}
+                    <img src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" alt="Profile Picture">
+                {% else %}
+                    <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Picture">
+                {% endif %}
+            </div>
+            <div class="info">
+                <h2>{{ user.name }}</h2>
+                <p>{{ user.username }}</p>
+                <p>{{ user.email }}</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
